@@ -1,0 +1,48 @@
+
+
+Test case 1
+Case 1.1 Configure the setup with two server hosts ¡¢ one array and one FC switch.
+         Hosts name are host1 and host2
+         Connect the array to the hosts with the correct zone configuration on the FC switch
+         Make the host wwn could be found on the array and those array port wwn could be found on hosts. 
+Case 1.2  Create one lun with normal size parameter . Then retrieve the lun info. Check the size 
+         is correct and the state of the lun is unexported as default. Remove this lun. Check the 
+         lun could not be found.
+       Then recreate a lun  with too big size. Then the wrong operation info could be shown; 
+       Then recreate a lun with too small size. Then the wrong operation info could be shown ;    
+       Then recreate one lun with wrong parameter .Then the wrong operation info could be shown. 
+Case 1.3 To check the multiple luns creation functions. Create multiple luns with normal size parameter;
+        Then retrieve those luns info . The size and the unexported state should be correct. 
+        Remove one unexported lun, Then this removed lun oculd not be found.
+        Create multiple luns with too big size parameter . Then the wrong operation info should be shown; 
+        Create multiple luns with too small size. Then the wrong operation info should be shown. 
+        Create multiple luns with wrong parameter characters . Then the wrong operation info should be shown.  
+Case 1.4 Check the lun size with one created lun and then resize the this lun with  with bigger size .
+        Then check the new size of the lun should be the new size; 
+        Then resize the lun with too bigger size, the wrong operation size info will be shown. 
+       Then resize the lun with smaller size or wrong characters, and it will return the wrong 
+         operation info.
+Case 1.5 then check export and unexport operations.
+     Pick up one created lun and check the un-exported state of this lun after it was created. 
+      Then change the state of the picked lun to export to one host named host1 and check the exported 
+      state of this lun after the operation. Then check the state on host1. The lun could be found on 
+      the host1. Try to remove this exported lun on array. The wrong operation info should shown.
+      On array, change the lun state to un-export. Then check the exported state of this lun is
+       un-exported after the operation.Then this lun could not be found from the host1. Remove this 
+       lun on array. The lun could not be found on array.
+       On array, export the above lun to a new host named host2. After that the lun state is changed
+       to exported state. Then we could check whether the lun could be found on the host2.Still 
+       this lun could not be found on host1. 
+ Case 1.6 For concurrent operations, those operations could be run with command line. Then several
+        operations script as below could be write. 
+      One script is to retrieve info of one lun named lun1, with no limited loop.
+      One script is to create and remove operation of one lun named lun2 , with no limited loop.
+      One script is to export and un-export  of one lun named lun3, with no limited loop.
+      One script is to expand one lun named lun4 with very little size, also the new size is 
+      just a little bigger than the old size. That means this operation could be run with many times 
+       with no limited loop.
+      After those scripts are ready, those scripts could be started at the same time. Then those
+       operations could be run normally.
+Case 1.7  Max numbers luns are created and exported to a host,
+      On the host side, some write or read operations are executed. There should be no I/O error 
+     and no too much operation delay on the host. 

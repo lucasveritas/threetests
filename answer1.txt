@@ -1,0 +1,180 @@
+
+a@ubuntu:~/cpp/c-linux$ cat emctest.c
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+struct node
+{
+    int key;
+    struct node *next;
+};
+
+//reverse the key of the linked list
+//
+struct node* reverse_key(struct node *HEAD, int k)
+{
+    if (HEAD ==NULL || k <= 1) return HEAD;
+
+
+    struct node *head = HEAD;
+    printf("before reverse key with ke is %d ======================\n", k);
+    printf("keys are ");
+    struct node *myp =  head;
+    while(myp != NULL)
+    {
+        printf(" %d",myp->key);
+	myp = myp->next;
+    }
+     printf(" \n");
+    printf("before reverse key with ke is %d ======================\n", k);
+
+    struct node *p;
+    struct node *first;
+    struct node *last;
+    struct node *above;
+
+    int tk;
+    p = head; 
+    while(p != NULL)
+    {
+	    //get the first and last node
+	    first = p;
+	    tk = k-1;
+	    while(tk >= 0  && p != NULL)
+	    {
+		    last = p;
+	            p = p ->next;
+		    tk--;
+	    }
+
+	    //end this process when no enough node
+            if( tk >=0 ) break;
+
+	    //deal with the first node of the reverse part of list
+	    if (head == first ) {
+	        printf("only first time\n");
+	        head = last;
+	    }else {
+	        above->next = last;
+	    } 
+
+	    //start to reverse the k nodes
+	    p = first;
+	    printf("head key and p key are %d and %d \n", head->key, p->key);
+	    struct node *temp;
+	    struct node *bef;
+	    bef = last->next;
+	    tk = k -1;
+	    while (tk >= 0){
+		    //move to next node ; means the next node is stored to p
+	            temp = p;
+		    //printf("processing node and bef are %d and %d\n", temp->key, bef->key);
+		    p = temp->next;
+
+		    //deal with temp
+		    temp->next = bef;
+
+		    //temp will be the new before node
+		    bef = temp;
+                    
+		    printf("k and tk are %d and %d\n", k , tk);
+		    tk--;
+	    }
+	    above = first;
+
+    }
+
+
+    printf("after reverse ======================================\n ");
+    printf("keys are ");
+    myp =  head;
+    while(myp != NULL)
+    {
+        printf(" %d",myp->key);
+	myp = myp->next;
+    }
+     printf(" \n");
+    printf("after reverse ======================================\n ");
+
+    return head;
+}
+
+
+int main()
+{
+     struct node *HEAD = NULL;
+     int k = 3;
+
+     struct node *n1 = malloc(sizeof(struct node));
+     struct node *n2 = malloc(sizeof(struct node));
+     struct node *n3 = malloc(sizeof(struct node));
+     struct node *n4 = malloc(sizeof(struct node));
+     struct node *n5 = malloc(sizeof(struct node));
+     struct node *n6 = malloc(sizeof(struct node));
+
+     memset(n1,0,sizeof(struct node));
+     memset(n2,0,sizeof(struct node));
+     memset(n3,0,sizeof(struct node));
+     memset(n4,0,sizeof(struct node));
+     memset(n5,0,sizeof(struct node));
+     memset(n6,0,sizeof(struct node));
+
+     HEAD = n1;
+     n1->key = 1;
+     n2->key = 2;
+     n3->key = 3;
+     n4->key = 4;
+     n5->key = 5;
+     n6->key = 6;
+
+    n1->next = n2;
+    n2->next = n3;
+    n3->next = n4;
+    n4->next = n5;
+    n5->next = n6;
+    n6->next = NULL;
+    
+    struct node *p = HEAD;
+    printf("keys are ");
+    while(p != NULL)
+    {
+        printf(" %d",p->key);
+	p = p->next;
+    }
+     printf(" \n");
+
+    HEAD = reverse_key(HEAD, k);
+
+    p = HEAD;
+    printf("now keys are ");
+    while(p != NULL)
+    {
+        printf(" %d",p->key);
+	p =  p->next;
+    }
+    printf(" \n");
+
+}
+
+Test result:
+a@ubuntu:~/cpp/c-linux$ ./emctest 
+keys are  1 2 3 4 5 6 
+before reverse key with ke is 3 ======================
+keys are  1 2 3 4 5 6 
+before reverse key with ke is 3 ======================
+only first time
+head key and p key are 3 and 1 
+k and tk are 3 and 2
+k and tk are 3 and 1
+k and tk are 3 and 0
+head key and p key are 3 and 4 
+k and tk are 3 and 2
+k and tk are 3 and 1
+k and tk are 3 and 0
+after reverse ======================================
+ keys are  3 2 1 6 5 4 
+after reverse ======================================
+ now keys are  3 2 1 6 5 4 
+a@ubuntu:~/cpp/c-linux$
+
