@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:ns="http://webarray" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://org.apache.axis2/xsd" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" targetNamespace="http://webarray">
+    <wsdl:documentation>webarrayop</wsdl:documentation>
+    <wsdl:types>
+        <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://webarray">
+            <xs:element name="resize">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="lunname" nillable="true" type="xs:string"/>
+                        <xs:element name="size" type="xs:int"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="resizeResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="removeLun">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="lunname" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="removeLunResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getLunInfo">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="lunname" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getLunInfoResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="createMultiLun">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="num" type="xs:int"/>
+                        <xs:element name="size" type="xs:int"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="createMultiLunResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="createLun">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="size" type="xs:int"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="createLunResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:message name="createLunRequest">
+        <wsdl:part name="parameters" element="ns:createLun"/>
+    </wsdl:message>
+    <wsdl:message name="createLunResponse">
+        <wsdl:part name="parameters" element="ns:createLunResponse"/>
+    </wsdl:message>
+    <wsdl:message name="resizeRequest">
+        <wsdl:part name="parameters" element="ns:resize"/>
+    </wsdl:message>
+    <wsdl:message name="resizeResponse">
+        <wsdl:part name="parameters" element="ns:resizeResponse"/>
+    </wsdl:message>
+    <wsdl:message name="getLunInfoRequest">
+        <wsdl:part name="parameters" element="ns:getLunInfo"/>
+    </wsdl:message>
+    <wsdl:message name="getLunInfoResponse">
+        <wsdl:part name="parameters" element="ns:getLunInfoResponse"/>
+    </wsdl:message>
+    <wsdl:message name="createMultiLunRequest">
+        <wsdl:part name="parameters" element="ns:createMultiLun"/>
+    </wsdl:message>
+    <wsdl:message name="createMultiLunResponse">
+        <wsdl:part name="parameters" element="ns:createMultiLunResponse"/>
+    </wsdl:message>
+    <wsdl:message name="removeLunRequest">
+        <wsdl:part name="parameters" element="ns:removeLun"/>
+    </wsdl:message>
+    <wsdl:message name="removeLunResponse">
+        <wsdl:part name="parameters" element="ns:removeLunResponse"/>
+    </wsdl:message>
+    <wsdl:portType name="webarrayopPortType">
+        <wsdl:operation name="createLun">
+            <wsdl:input message="ns:createLunRequest" wsaw:Action="urn:createLun"/>
+            <wsdl:output message="ns:createLunResponse" wsaw:Action="urn:createLunResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="resize">
+            <wsdl:input message="ns:resizeRequest" wsaw:Action="urn:resize"/>
+            <wsdl:output message="ns:resizeResponse" wsaw:Action="urn:resizeResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="getLunInfo">
+            <wsdl:input message="ns:getLunInfoRequest" wsaw:Action="urn:getLunInfo"/>
+            <wsdl:output message="ns:getLunInfoResponse" wsaw:Action="urn:getLunInfoResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="createMultiLun">
+            <wsdl:input message="ns:createMultiLunRequest" wsaw:Action="urn:createMultiLun"/>
+            <wsdl:output message="ns:createMultiLunResponse" wsaw:Action="urn:createMultiLunResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="removeLun">
+            <wsdl:input message="ns:removeLunRequest" wsaw:Action="urn:removeLun"/>
+            <wsdl:output message="ns:removeLunResponse" wsaw:Action="urn:removeLunResponse"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="webarrayopSoap11Binding" type="ns:webarrayopPortType">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <wsdl:operation name="createLun">
+            <soap:operation soapAction="urn:createLun" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="resize">
+            <soap:operation soapAction="urn:resize" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getLunInfo">
+            <soap:operation soapAction="urn:getLunInfo" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="createMultiLun">
+            <soap:operation soapAction="urn:createMultiLun" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="removeLun">
+            <soap:operation soapAction="urn:removeLun" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="webarrayopSoap12Binding" type="ns:webarrayopPortType">
+        <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <wsdl:operation name="createLun">
+            <soap12:operation soapAction="urn:createLun" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="resize">
+            <soap12:operation soapAction="urn:resize" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getLunInfo">
+            <soap12:operation soapAction="urn:getLunInfo" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="createMultiLun">
+            <soap12:operation soapAction="urn:createMultiLun" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="removeLun">
+            <soap12:operation soapAction="urn:removeLun" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="webarrayopHttpBinding" type="ns:webarrayopPortType">
+        <http:binding verb="POST"/>
+        <wsdl:operation name="createLun">
+            <http:operation location="createLun"/>
+            <wsdl:input>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="resize">
+            <http:operation location="resize"/>
+            <wsdl:input>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getLunInfo">
+            <http:operation location="getLunInfo"/>
+            <wsdl:input>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="createMultiLun">
+            <http:operation location="createMultiLun"/>
+            <wsdl:input>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="removeLun">
+            <http:operation location="removeLun"/>
+            <wsdl:input>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="webarrayop">
+        <wsdl:port name="webarrayopHttpSoap11Endpoint" binding="ns:webarrayopSoap11Binding">
+            <soap:address location="http://localhost:8080/axis2/services/webarrayop.webarrayopHttpSoap11Endpoint/"/>
+        </wsdl:port>
+        <wsdl:port name="webarrayopHttpSoap12Endpoint" binding="ns:webarrayopSoap12Binding">
+            <soap12:address location="http://localhost:8080/axis2/services/webarrayop.webarrayopHttpSoap12Endpoint/"/>
+        </wsdl:port>
+        <wsdl:port name="webarrayopHttpEndpoint" binding="ns:webarrayopHttpBinding">
+            <http:address location="http://localhost:8080/axis2/services/webarrayop.webarrayopHttpEndpoint/"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>
